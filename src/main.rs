@@ -1,9 +1,13 @@
 #![feature(proc_macro_hygiene, decl_macro)]
-
 #[macro_use] extern crate rocket;
 
 #[get("/")]
 fn index() -> &'static str {
+    "Hello, world!"
+}
+
+#[get("/blog")]
+fn blog() -> &'static str {
     "Hello, world!"
 }
 
