@@ -11,15 +11,24 @@ struct Person {
 
 #[get("/blog?<person..>")]
 fn blog(person: Option<Form<Person>>) -> String {
-    if let Some(person) = person {
-        if let Some(entry) = person.entry {
-            format!("Hello, {} year old categoryd {}!", entry, person.category)
-        } else {
-            format!("Hello {}!", person.category)
-        }
-    } else {
-        "We're gonna need a category, and only a category.".into()
+    match person {
+      Some(x) => if let Some(entry) = x.entry {
+                     format!("Hello, {} year old categoryd {}!", entry, x.category)
+                 } else {
+                     format!("Hello {}!", x.category) 
+                 }   
+      None    => "aaa".into()
     }
+
+    // if let Some(person) = person {
+    //     if let Some(entry) = person.entry {
+    //         format!("Hello, {} year old categoryd {}!", entry, person.category)
+    //     } else {
+    //         format!("Hello {}!", person.category)
+    //     }
+    // } else {
+    //     "We're gonna need a category, and only a category.".into()
+    // }
 }
 
 #[get("/")]
