@@ -19,16 +19,6 @@ fn blog(person: Option<Form<Person>>) -> String {
                  }   
       None    => "aaa".into()
     }
-
-    // if let Some(person) = person {
-    //     if let Some(entry) = person.entry {
-    //         format!("Hello, {} year old categoryd {}!", entry, person.category)
-    //     } else {
-    //         format!("Hello {}!", person.category)
-    //     }
-    // } else {
-    //     "We're gonna need a category, and only a category.".into()
-    // }
 }
 
 #[get("/")]
