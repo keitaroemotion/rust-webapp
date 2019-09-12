@@ -1,7 +1,7 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 #[macro_use] extern crate rocket;
 
-use rocket::request::Form;
+use rocket::request::{Form, LenientForm};
 
 #[derive(FromForm)]
 struct Blog {
@@ -10,7 +10,7 @@ struct Blog {
 }
 
 #[get("/blog?<article..>")]
-fn blog(article: Option<Form<Blog>>) -> String {
+fn blog(article: Option<LenientForm<Blog>>) -> String {
     match article {
         Some(x) => if let Some(entry) = x.entry {
                        format!("category: {} entry: {}", x.category, entry)
