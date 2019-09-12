@@ -2,6 +2,7 @@
 #[macro_use] extern crate rocket;
 
 use rocket::request::LenientForm;
+use rocket::Request;
 
 #[derive(FromForm)]
 struct Blog {
@@ -24,6 +25,11 @@ fn blog(article: Option<LenientForm<Blog>>) -> String {
 #[get("/")]
 fn index() -> &'static str {
     "Hello, world!"
+}
+
+#[catch(404)]
+fn not_found(req: &Request) -> String {
+    format!("Sorry, '{}' is not a valid path.", req.uri())
 }
 
 fn main() {
