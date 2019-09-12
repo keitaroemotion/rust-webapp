@@ -12,12 +12,12 @@ struct Blog {
 #[get("/blog?<article..>")]
 fn blog(article: Option<Form<Blog>>) -> String {
     match article {
-      Some(x) => if let Some(entry) = x.entry {
-                     format!("category: {} entry: {}", x.category, entry)
-                 } else {
-                     format!("category: {} (articles enlisted here:)", x.category) 
-                 }   
-      None    => "aaa".into()
+        Some(x) => if let Some(entry) = x.entry {
+                       format!("category: {} entry: {}", x.category, entry)
+                   } else {
+                       format!("category: {} (articles enlisted here:)", x.category) 
+                   }   
+        None    => "wrong input".into()
     }
 }
 
