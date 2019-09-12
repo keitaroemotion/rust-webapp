@@ -1,7 +1,7 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 #[macro_use] extern crate rocket;
 
-use rocket::request::{Form, LenientForm};
+use rocket::request::LenientForm;
 
 #[derive(FromForm)]
 struct Blog {
