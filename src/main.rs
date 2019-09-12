@@ -31,7 +31,7 @@ fn main() {
                         "/",
                         routes![
                             index,
-                            blog
+                            blog,
                         ]
                     )
                     .launch();
