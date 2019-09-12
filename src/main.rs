@@ -3,6 +3,7 @@
 
 use rocket::request::LenientForm;
 use rocket::Request;
+// use rocket_contrib::templates::Template;
 
 #[derive(FromForm)]
 struct Blog {
@@ -40,5 +41,6 @@ fn main() {
                             blog,
                         ]
                     )
+//                    .attach(Template::fairing())
                     .launch();
 }
