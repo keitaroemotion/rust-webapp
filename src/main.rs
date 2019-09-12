@@ -4,18 +4,18 @@
 use rocket::request::Form;
 
 #[derive(FromForm)]
-struct Person {
-    category:  String,
-    entry: Option<u8>
+struct Blog {
+    category: String,
+    entry:    Option<u8>
 }
 
-#[get("/blog?<person..>")]
-fn blog(person: Option<Form<Person>>) -> String {
-    match person {
+#[get("/blog?<article..>")]
+fn blog(article: Option<Form<Blog>>) -> String {
+    match article {
       Some(x) => if let Some(entry) = x.entry {
-                     format!("Hello, {} year old categoryd {}!", entry, x.category)
+                     format!("category: {} entry: {}", x.category, entry)
                  } else {
-                     format!("Hello {}!", x.category) 
+                     format!("category: {} (articles enlisted here:)", x.category) 
                  }   
       None    => "aaa".into()
     }
