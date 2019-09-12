@@ -3,7 +3,8 @@
 
 use rocket::request::LenientForm;
 use rocket::Request;
-// use rocket_contrib::templates::Template;
+use rocket_contrib::templates::Template;
+use std::collections::HashMap;
 
 #[derive(FromForm)]
 struct Blog {
@@ -24,8 +25,10 @@ fn blog(article: Option<LenientForm<Blog>>) -> String {
 }
 
 #[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
+fn index() -> Template {
+    let mut context  = HashMap::new();
+    context.insert(0u32, 'x');
+    Template::render("index", context)
 }
 
 #[catch(404)]
@@ -41,6 +44,6 @@ fn main() {
                             blog,
                         ]
                     )
-//                    .attach(Template::fairing())
+                    .attach(Template::fairing())
                     .launch();
 }
