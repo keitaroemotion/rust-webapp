@@ -42,6 +42,13 @@ fn index() -> Template {
     Template::render("index", context)
 }
 
+#[get("/data")]
+fn data() -> Template {
+    let mut context  = HashMap::new();
+    context.insert(0u32, 'x');
+    Template::render("data", context)
+}
+
 #[catch(404)]
 fn not_found(req: &Request) -> String {
     format!("Sorry, '{}' is not a valid path.", req.uri())
@@ -51,9 +58,10 @@ fn main() {
     rocket::ignite().mount(
                         "/",
                         routes![
-                            index,
-                            blog,
                             assets,
+                            blog,
+                            data,
+                            index,
                         ]
                     )
                     .attach(Template::fairing())
