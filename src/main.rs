@@ -1,6 +1,7 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 #[macro_use] extern crate rocket;
 
+use regex::Regex;
 use rocket::fairing::AdHoc;
 use rocket::request::LenientForm;
 use rocket::Request;
@@ -8,6 +9,8 @@ use rocket::response::NamedFile;
 use rocket::State;
 use rocket_contrib::templates::Template;
 use std::collections::HashMap;
+use std::env;
+use std::iter::Filter;
 use std::path::Path;
 use std::path::PathBuf;
 struct AssetsDir(String);
@@ -54,7 +57,7 @@ fn not_found(req: &Request) -> String {
     format!("Sorry, '{}' is not a valid path.", req.uri())
 }
 
-fn main() {
+fn launch_web() {
     rocket::ignite().mount(
                         "/",
                         routes![
@@ -77,4 +80,14 @@ fn main() {
                         }
                     ))
                     .launch();
+}
+
+fn main() {
+    let args: Vec<String> = env::args().collect();
+    println!("args: {:?}", args);
+    let re       = Regex::new(r"^(\w)+=(\w)+$").unwrap();
+    let mut iter = args.iter().filter(|x| re.is_match(x));
+    println!("{:?}", iter.next());
+    println!("{:?}", iter.next());
+    //launch_web();
 }

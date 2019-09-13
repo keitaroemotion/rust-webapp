@@ -1,1 +1,1 @@
-sudo cargo run
+sudo cargo run $@

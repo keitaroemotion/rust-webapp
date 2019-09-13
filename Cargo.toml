@@ -8,6 +8,8 @@ edition = "2018"
 
 [dependencies]
 rocket = { version = "0.4.2", features = ["tls"] }
+postgres = "0.15"
+regex = "1"
 
 [dependencies.rocket_contrib]
 version = "0.4.2"
