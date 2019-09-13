@@ -13,3 +13,7 @@ rocket = { version = "0.4.2", features = ["tls"] }
 version = "0.4.2"
 default-features = false
 features = ["handlebars_templates", "tera_templates"]
+
+[global.tls]
+certs = "tmp/cert/certificate.pem"
+key   = "tmp/cert/key.pem"
