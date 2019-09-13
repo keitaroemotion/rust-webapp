@@ -57,13 +57,16 @@ fn main() {
                         ]
                     )
                     .attach(Template::fairing())
-                    .attach(AdHoc::on_attach("Assets Config", |rocket| {
-                        let assets_dir = rocket.config()
-                            .get_str("assets_dir")
-                            .unwrap_or("assets/")
-                            .to_string();
-
-                        Ok(rocket.manage(AssetsDir(assets_dir)))
-                    }))
+                    .attach(AdHoc::on_attach(
+                        "Assets Config",
+                        |rocket| {
+                            let assets_dir = rocket
+                                                 .config   ()
+                                                 .get_str  ("assets_dir")
+                                                 .unwrap_or("assets/")
+                                                 .to_string();
+                            Ok(rocket.manage(AssetsDir(assets_dir)))
+                        }
+                    ))
                     .launch();
 }
