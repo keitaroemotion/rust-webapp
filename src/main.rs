@@ -3,8 +3,18 @@
 
 use rocket::request::LenientForm;
 use rocket::Request;
+use rocket::response::NamedFile;
+use rocket::State;
 use rocket_contrib::templates::Template;
 use std::collections::HashMap;
+use std::path::Path;
+use std::path::PathBuf;
+struct AssetsDir(String);
+
+#[get("/<asset..>")]
+fn assets(asset: PathBuf, assets_dir: State<AssetsDir>) -> Option<NamedFile> {
+    NamedFile::open(Path::new(&assets_dir.0).join(asset)).ok()
+}
 
 #[derive(FromForm)]
 struct Blog {

@@ -4,6 +4,7 @@ port         = 80
 keep_alive   = 5
 log          = "normal"
 template_dir = "src/templates/"
+assets_dir   = "src/assets/"
 limits       = { forms = 32768 }
 
 [staging]
@@ -12,6 +13,7 @@ port         = 80
 keep_alive   = 5
 log          = "normal"
 template_dir = "src/templates/"
+assets_dir   = "src/assets/"
 limits       = { forms = 32768 }
 
 [production]
@@ -20,4 +22,5 @@ port         = 80
 keep_alive   = 5
 log          = "critical"
 template_dir = "src/templates/"
+assets_dir   = "src/assets/"
 limits       = { forms = 32768 }
