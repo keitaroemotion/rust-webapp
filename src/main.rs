@@ -1,6 +1,7 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 #[macro_use] extern crate rocket;
 
+use rocket::fairing::AdHoc;
 use rocket::request::LenientForm;
 use rocket::Request;
 use rocket::response::NamedFile;
@@ -52,8 +53,17 @@ fn main() {
                         routes![
                             index,
                             blog,
+                            assets,
                         ]
                     )
                     .attach(Template::fairing())
+                    .attach(AdHoc::on_attach("Assets Config", |rocket| {
+                        let assets_dir = rocket.config()
+                            .get_str("assets_dir")
+                            .unwrap_or("assets/")
+                            .to_string();
+
+                        Ok(rocket.manage(AssetsDir(assets_dir)))
+                    }))
                     .launch();
 }
