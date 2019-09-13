@@ -88,9 +88,17 @@ fn main() {
     let mut iter = args
                        .iter  ()
                        .filter(|x| re.is_match(x))
-                       .map   (|x| x.split("=").collect::<Vec<&str>>());
+                       .map(|x| x.split("=").collect::<Vec<&str>>());
 
-    println!("{:?}", iter.next().unwrap());
-    println!("{:?}", iter.next().unwrap());
+    let mut hash_map = HashMap::new();
+    loop {
+        match iter.next() {
+            Some(record) => hash_map.insert(record[0], record[1]),
+            None         => break,
+        };
+    }
+
+    println!("{:?}", hash_map["aaa"]);
+    println!("{:?}", hash_map["ccc"]);
     //launch_web();
 }
