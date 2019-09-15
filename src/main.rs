@@ -85,8 +85,8 @@ fn launch_web() -> u32 {
 
 fn help() -> u32 {
    println!("");
-   println!("rustweb t=w    ... launch webserver");
-   println!("rustweb t=help ... show help menu");
+   println!("rustweb --type=w    ... launch webserver");
+   println!("rustweb --type=help ... show help menu");
    println!("");
    return 0;
 }
@@ -94,7 +94,7 @@ fn help() -> u32 {
 fn main() {
     let args: Vec<String> = env::args().collect();
     println!("args: {:?}", args);
-    let re       = Regex::new(r"^(\w)+=(\w)+$").unwrap();
+    let re       = Regex::new(r"^--(\w)+=(\w)+$").unwrap();
     let mut iter = args
                        .iter  ()
                        .filter(|x| re.is_match(x))
@@ -108,7 +108,7 @@ fn main() {
         };
     }
 
-    match hash_map.get("t") {
+    match hash_map.get("--type") {
         Some(x) => match x {
                        &"w" => launch_web(),
                        &"d" => database::create_table(),

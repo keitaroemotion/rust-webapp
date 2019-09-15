@@ -2,4 +2,4 @@ rm -rf bin
 mkdir -p bin
 sudo cargo build
 mv target/debug/rustweb bin
-./bin/rustweb
+sudo ./bin/rustweb $@
