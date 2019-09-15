@@ -100,10 +100,9 @@ fn main() {
 
     match hash_map.get("type") {
         Some(x) => match x {
-                       &"web" => println!("web option"),
+                       &"web" => launch_web(),
                        &_     => println!("do nothing."),
                    },
         None    => println!("Type parameter (type=xxx) missing.")
     }
-    //launch_web();
 }
