@@ -112,7 +112,7 @@ fn main() {
         Some(x) => match x {
                        &"w" => launch_web(),
                        &"d" => database::create_table(),
-                       &_     => help(),
+                       &_   => help(),
                    },
         None    => help()
     };
