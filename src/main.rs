@@ -88,7 +88,7 @@ fn main() {
     let mut iter = args
                        .iter  ()
                        .filter(|x| re.is_match(x))
-                       .map(|x| x.split("=").collect::<Vec<&str>>());
+                       .map   (|x| x.split("=").collect::<Vec<&str>>());
 
     let mut hash_map = HashMap::new();
     loop {
@@ -98,7 +98,12 @@ fn main() {
         };
     }
 
-    println!("{:?}", hash_map["aaa"]);
-    println!("{:?}", hash_map["ccc"]);
+    match hash_map.get("type") {
+        Some(x) => match x {
+                       &"web" => println!("web option"),
+                       &_     => println!("do nothing."),
+                   },
+        None    => println!("Type parameter (type=xxx) missing.")
+    }
     //launch_web();
 }
