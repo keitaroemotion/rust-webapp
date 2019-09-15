@@ -23,6 +23,18 @@ mod tests {
                        TlsMode::None
                    )
                   .unwrap();
+
+        conn
+            .execute(
+                 "CREATE TABLE IF NOT EXISTS person (
+                     id   SERIAL PRIMARY KEY,
+                     name VARCHAR NOT NULL,
+                     data BYTEA
+                 )",
+                 &[]
+             )
+            .unwrap();
+
         assert_eq!(create_table(), 0)    
     }
 }
