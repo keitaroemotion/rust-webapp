@@ -85,8 +85,8 @@ fn launch_web() -> u32 {
 
 fn help() -> u32 {
    println!("");
-   println!("app t=w    ... launch webserver");
-   println!("app t=help ... show help menu");
+   println!("rustweb t=w    ... launch webserver");
+   println!("rustweb t=help ... show help menu");
    println!("");
    return 0;
 }
