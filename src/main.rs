@@ -81,6 +81,13 @@ fn launch_web() {
                     .launch();
 }
 
+fn help() {
+   println!("");
+   println!("app t=w    ... launch webserver");
+   println!("app t=help ... show help menu");
+   println!("");
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     println!("args: {:?}", args);
@@ -98,11 +105,11 @@ fn main() {
         };
     }
 
-    match hash_map.get("type") {
+    match hash_map.get("t") {
         Some(x) => match x {
-                       &"web" => launch_web(),
-                       &_     => println!("do nothing."),
+                       &"w" => launch_web(),
+                       &_     => help(),
                    },
-        None    => println!("Type parameter (type=xxx) missing.")
+        None    => help()
     }
 }
