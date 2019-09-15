@@ -57,7 +57,7 @@ fn not_found(req: &Request) -> String {
     format!("Sorry, '{}' is not a valid path.", req.uri())
 }
 
-fn launch_web() {
+fn launch_web() -> u32 {
     rocket::ignite().mount(
                         "/",
                         routes![
@@ -80,13 +80,15 @@ fn launch_web() {
                         }
                     ))
                     .launch();
+    return 0;
 }
 
-fn help() {
+fn help() -> u32 {
    println!("");
    println!("app t=w    ... launch webserver");
    println!("app t=help ... show help menu");
    println!("");
+   return 0;
 }
 
 fn main() {
@@ -113,5 +115,5 @@ fn main() {
                        &_     => help(),
                    },
         None    => help()
-    }
+    };
 }

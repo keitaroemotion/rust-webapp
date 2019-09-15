@@ -1,4 +1,5 @@
-pub fn create_table() {
+pub fn create_table() -> u32 {
+    return 0;
 }
 
 #[cfg(test)]
@@ -8,6 +9,6 @@ mod tests {
     #[test]
     fn test_create_table()
     {
-        //assert_eq!(create_table(), 0)    
+        assert_eq!(create_table(), 0)    
     }
 }
