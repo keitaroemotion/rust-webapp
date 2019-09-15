@@ -1,6 +1,7 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 #[macro_use] extern crate rocket;
 
+mod database;
 use regex::Regex;
 use rocket::fairing::AdHoc;
 use rocket::request::LenientForm;
@@ -108,6 +109,7 @@ fn main() {
     match hash_map.get("t") {
         Some(x) => match x {
                        &"w" => launch_web(),
+                       &"d" => database::create_table(),
                        &_     => help(),
                    },
         None    => help()
