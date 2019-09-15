@@ -84,11 +84,11 @@ fn launch_web() -> u32 {
 }
 
 fn help() -> u32 {
-   println!("");
-   println!("rustweb --type=w    ... launch webserver");
-   println!("rustweb --type=help ... show help menu");
-   println!("");
-   return 0;
+    println!("");
+    println!("rustweb --type=w    ... launch webserver");
+    println!("rustweb --type=help ... show help menu");
+    println!("");
+    return 0;
 }
 
 fn main() {
